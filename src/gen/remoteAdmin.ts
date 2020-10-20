@@ -19,9 +19,6 @@ export const remoteAdmin: Function = () => {
 
   //* Loop through all defined RoleList
   for (const r in roles) {
-    // TODO ----------------------------------------------- *\\
-    // Implement Permissions ------------------------------ *\\
-
     //! If role is default, exit iteration and continue loop
     if (r == 'default') continue
 
