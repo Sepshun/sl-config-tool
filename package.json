@@ -14,6 +14,7 @@
     "eslint-config-prettier": "~6.11.0",
     "eslint-plugin-jest": "~23.20.0",
     "jest": "~26.4.2",
+    "lodash.clonedeep": "^4.5.0",
     "prettier": "~2.0.5",
     "rimraf": "~3.0.2",
     "ts-jest": "~26.2.0",
@@ -22,15 +23,15 @@
   },
   "scripts": {
     "clean": "rimraf coverage build tmp",
-    "build": "tsc -p tsconfig.release.json",
-    "build:watch": "tsc -w -p tsconfig.release.json",
+    "build": "tsc -p tsconfig.release.json && node ./build/src/main.js",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test": "jest --coverage"
   },
   "author": "Jessica Skye <sepshuncontact@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
+    "js-yaml": "^3.14.0",
+    "signale": "^1.4.0",
     "tslib": "~2.0.1"
   },
   "volta": {
