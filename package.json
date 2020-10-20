@@ -1,7 +1,7 @@
 {
-  "name": "node-typescript-boilerplate",
-  "version": "0.0.0",
-  "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
+  "name": "sl-config-tool",
+  "version": "1.0.0",
+  "description": "Build tool for SL EXILED Configuration",
   "engines": {
     "node": ">= 12.13 <13"
   },
@@ -28,7 +28,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
-  "author": "Jakub Synowiec <github@jakubsynowiec.info>",
+  "author": "Jessica Skye <sepshuncontact@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "tslib": "~2.0.1"
