@@ -9,7 +9,7 @@ import remoteAdminConfig from '../data/remoteAdminConfig'
 //* COMPILER FUNCTION ------------------------------------- *\\
 let permObj = {}
 export const remoteAdmin: Function = () => {
-  log.info('Compiling RemoteAdmin config files...')
+  log.compiling('RemoteAdmin', 'green', 'Initializing compilation...')
 
   //* Define Init Values
   let Members = []
@@ -62,12 +62,16 @@ export const remoteAdmin: Function = () => {
         permObj[perm].push(r)
       })
     }
+
+    log.compiling('RemoteAdmin', 'green', `Compiled role: ${r}`)
   }
 
   //* Structure and Compile Permissions properly
   for (const p in permObj) {
     Permissions.push({ [p]: permObj[p] })
   }
+
+  log.compiling('RemoteAdmin', 'green', `Finished compilation`)
 
   //* Return the RAConfig Object
   return {

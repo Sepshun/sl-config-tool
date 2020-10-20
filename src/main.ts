@@ -1,13 +1,21 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES ---------------------------------------- *\\
 import compile from './gen'
-import { configPath, convertToYAML, writeFile } from './utils'
+import { log, configPath, convertToYAML, writeFile } from './utils'
+
+
+//* ------------------------------------------------------- *\\
+//* INITIALIZE VALUES ------------------------------------- *\\
+let time = 0
+let timer = setInterval(() => { time += 1 }, 1)
 
 
 //* ------------------------------------------------------- *\\
 //* TOOL FUNCTIONAL OBJECT -------------------------------- *\\
 const tool = {
   build () {
+    log.info('Starting build process...')
+
     //* Write SL Remote Admin File
     writeFile(
       configPath.remoteAdmin,
@@ -20,7 +28,11 @@ const tool = {
       convertToYAML(compile.exiledPerms())
     )
 
-    console.log('Build complete...')
+    //* Clear Build Timer & Log
+    clearInterval(timer)
+    console.log('\n'.repeat(3))
+    log.done(`Finished build in ${time}ms`)
+    log.clear()
   },
   upload () {}
 }

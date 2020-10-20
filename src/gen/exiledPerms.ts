@@ -1,11 +1,13 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES AND TYPES ------------------------------ *\\
-const { inherit } = require('../utils')
+const { log, inherit } = require('../utils')
 import { Role, roles } from '../data/roles'
 
 //* ------------------------------------------------------- *\\
 //* COMPILER FUNCTION ------------------------------------- *\\
 export const exiledPerms: Function = () => {
+  log.compiling('EXILEDPerms', 'yellow', `Initializing compilation...`)
+
   let res = {}
 
   for (const r in roles) {
@@ -20,7 +22,11 @@ export const exiledPerms: Function = () => {
 
     //* Set role permissions
     res[r].permissions = role.exiledPerms
+
+    log.compiling('EXILEDPerms', 'yellow', `Compiled role: ${r}`)
   }
+
+  log.compiling('EXILEDPerms', 'yellow', `Finished compilation`)
 
   return res
 }

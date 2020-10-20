@@ -8,31 +8,32 @@ const cloneDeep = require('lodash.clonedeep')
 const readline = require('readline')
 const { Signale } = require('signale')
 const chalk = require('chalk')
-interface Logger {
-  info: Function;
-  done: Function;
-  interact: Function;
-  clear: Function;
-}
 const ilog = new Signale({
   interactive: true,
   types: {
-    uploader: {
+    upload: {
       badge: '',
       color: 'cyan',
       label: ''
     }
   }
 })
-export const log: Logger = {
+export const log = {
   info (msg: String) {
     console.log( chalk.bgBlue( chalk.black(' INFO ') ), msg )
   },
   done (msg: String) {
     console.log( chalk.bgGreen( chalk.black(' DONE ') ), msg )
   },
+  compiling (title: String, col: String, msg: String) {
+    console.log(
+      chalk.blue(' COMPILE '),
+      chalk[`${col}`](`${title} `),
+      msg
+    )
+  },
   interact (msg: String) {
-    ilog.upload( chalk.whiteBright(msg) )
+    ilog.upload( msg )
   },
   clear () {
     if (process.stdout.isTTY) {
@@ -128,6 +129,5 @@ export const convertToYAML: Function = (json) => {
   return yaml.safeDump(json)
 }
 export const writeFile: Function = (path: string, data) => {
-  console.log(`Writing file ${path} with data: ${data}`)
   fs.outputFileSync(path, data)
 }
