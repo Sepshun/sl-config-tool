@@ -1,5 +1,5 @@
-const { remoteAdmin } = require('./remoteAdmin')
-const { exiledPerms } = require('./exiledPerms')
+import { remoteAdmin }  from './remoteAdmin'
+import { exiledPerms }  from './exiledPerms'
 export default {
   remoteAdmin,
   exiledPerms

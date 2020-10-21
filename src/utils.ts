@@ -5,8 +5,8 @@ const cloneDeep = require('lodash.clonedeep')
 
 //* ------------------------------------------------------- *\\
 //* CONSOLE LOGGER ---------------------------------------- *\\
-const readline = require('readline')
 const { Signale } = require('signale')
+const readline = require('readline')
 const chalk = require('chalk')
 const ilog = new Signale({
   interactive: true,
@@ -19,25 +19,25 @@ const ilog = new Signale({
   }
 })
 export const log = {
-  info (msg: String) {
+  info (msg: string): void {
     console.log( chalk.bgBlue( chalk.black(' INFO ') ), msg )
   },
-  done (msg: String) {
+  done (msg: string): void {
     console.log( chalk.bgGreen( chalk.black(' DONE ') ), msg )
   },
-  compiling (title: String, col: String, msg: String) {
+  compiling (title: string, col: string, msg: string): void {
     console.log(
       chalk.blue(' COMPILE '),
       chalk[`${col}`](`${title} `),
       msg
     )
   },
-  interact (msg: String) {
+  interact (msg: string): void {
     ilog.upload( msg )
   },
-  clear () {
+  clear (): void {
     if (process.stdout.isTTY) {
-      const blank: String = '\n'.repeat(process.stdout.rows - 3)
+      const blank: string = '\n'.repeat(process.stdout.rows - 3)
       console.log(blank)
       readline.cursorTo(process.stdout, 0, 2)
       readline.clearScreenDown(process.stdout)
@@ -48,8 +48,8 @@ export const log = {
 
 //* ------------------------------------------------------- *\\
 //* VALIDATE ROLE COLORS ---------------------------------- *\\
-const colors: String[] = [ 'pink', 'red', 'default', 'brown', 'silver', 'light_green', 'crimson', 'cyan', 'aqua', 'deep_pink', 'tomato', 'yellow', 'magenta', 'blue_green', 'orange', 'lime', 'green', 'emerald', 'nickel', 'mint', 'army_green', 'pumpkin' ]
-export function validateColor (col: String) {
+const colors: string[] = [ 'pink', 'red', 'default', 'brown', 'silver', 'light_green', 'crimson', 'cyan', 'aqua', 'deep_pink', 'tomato', 'yellow', 'magenta', 'blue_green', 'orange', 'lime', 'green', 'emerald', 'nickel', 'mint', 'army_green', 'pumpkin' ]
+export function validateColor (col: string): string {
   if (colors.includes(col)) return col
   throw `${col} is not a valid color`
 }
@@ -58,7 +58,7 @@ export function validateColor (col: String) {
 //* ------------------------------------------------------- *\\
 //* ROLE INHERITANCE -------------------------------------- *\\
 import { roles, Role } from './data/roles'
-export const inherit: Function = (role: Role) => {
+export function inherit (role: Role): Role {
   let res: Role = cloneDeep(roles.default)
 
   //* If role has inheritance
@@ -81,11 +81,11 @@ export const inherit: Function = (role: Role) => {
   res = cloneDeep(applyProps(role, res))
   return res
 }
-const applyProps: Function = (r1: Role, r2: Role) => {
-  let res: Role = cloneDeep(r2)
+const applyProps = (r1: Role, r2: Role): Role => {
+  const res: Role = cloneDeep(r2)
 
   //* Loop through main role properties
-  for (let p in r1) {
+  for (const p in r1) {
     //* If Array, merge with inheritted array
     if (Array.isArray(r1[p]))
       res[p] = [...new Set(r2[p] ? r1[p].concat(r2[p]) : r1[p])]
@@ -126,9 +126,9 @@ export const configPath = {
 //* CONVERT JSON>YAML & WRITE FILES ----------------------- *\\
 const fs = require('fs-extra')
 const yaml = require('js-yaml')
-export const convertToYAML: Function = (json) => {
+export function convertToYAML (json: Record<string, unknown>): string {
   return yaml.safeDump(json)
 }
-export const writeFile: Function = (path: string, data) => {
+export function writeFile (path: string, data: string): void {
   fs.outputFileSync(path, data)
 }

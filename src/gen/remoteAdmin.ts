@@ -1,21 +1,31 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES AND TYPES ------------------------------ *\\
-const { log, inherit, validateColor } = require('../utils')
+import { log, inherit, validateColor } from '../utils'
 import { Role, roles } from '../data/roles'
 import remoteAdminConfig from '../data/remoteAdminConfig'
 
+//* ------------------------------------------------------- *\\
+//* INTERFACES -------------------------------------------- *\\
+interface RAConfig {
+  Members: string[];
+  Roles: string[];
+  Permissions: {
+    [permission: string]: string[]
+  }[];
+  [extraProp: string]: any;
+}
 
 //* ------------------------------------------------------- *\\
 //* COMPILER FUNCTION ------------------------------------- *\\
-let permObj = {}
-export const remoteAdmin: Function = () => {
+const permObj = {}
+export function remoteAdmin (): RAConfig {
   log.compiling('RemoteAdmin', 'green', 'Initializing compilation...')
 
   //* Define Init Values
-  let Members = []
-  let roleBadges = {}
-  let Roles = []
-  let Permissions = []
+  const Members = []
+  const roleBadges = {}
+  const Roles = []
+  const Permissions = []
 
   //* Loop through all defined RoleList
   for (const r in roles) {
@@ -80,5 +90,5 @@ export const remoteAdmin: Function = () => {
     Roles,
     Permissions,
     ...remoteAdminConfig
-  }
+  } as RAConfig
 }

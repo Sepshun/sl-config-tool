@@ -7,7 +7,7 @@ import { log, configPath, convertToYAML, writeFile } from './utils'
 //* ------------------------------------------------------- *\\
 //* INITIALIZE VALUES ------------------------------------- *\\
 let time = 0
-let timer = setInterval(() => { time += 1 }, 1)
+const timer = setInterval(() => { time += 1 }, 1)
 
 
 //* ------------------------------------------------------- *\\
@@ -33,8 +33,7 @@ const tool = {
     console.log('\n'.repeat(3))
     log.done(`Finished build in ${time}ms`)
     log.clear()
-  },
-  upload () {}
+  }
 }
 
 

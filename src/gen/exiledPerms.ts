@@ -1,15 +1,26 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES AND TYPES ------------------------------ *\\
-const { log, inherit } = require('../utils')
+import { log, inherit } from '../utils'
 import { Role, roles } from '../data/roles'
 
 //* ------------------------------------------------------- *\\
+//* INTERFACES -------------------------------------------- *\\
+interface EXILEDPerms {
+  [role: string]: {
+    inheritance?: string[];
+    permissions?: string[];
+  }
+}
+
+//* ------------------------------------------------------- *\\
 //* COMPILER FUNCTION ------------------------------------- *\\
-export const exiledPerms: Function = () => {
+export function exiledPerms (): EXILEDPerms {
   log.compiling('EXILEDPerms', 'yellow', `Initializing compilation...`)
 
-  let res = {}
+  //* Initialize Result Object
+  const res: EXILEDPerms = {}
 
+  //* Loop through all roles
   for (const r in roles) {
     //! If role is default, exit iteration and continue loop
     if (r == 'default') continue
@@ -26,7 +37,7 @@ export const exiledPerms: Function = () => {
     log.compiling('EXILEDPerms', 'yellow', `Compiled role: ${r}`)
   }
 
+  //* Log Complete & Return Result Object
   log.compiling('EXILEDPerms', 'yellow', `Finished compilation`)
-
   return res
 }
