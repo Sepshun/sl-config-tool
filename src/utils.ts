@@ -87,7 +87,8 @@ const applyProps: Function = (r1: Role, r2: Role) => {
   //* Loop through main role properties
   for (let p in r1) {
     //* If Array, merge with inheritted array
-    if (Array.isArray(r1[p])) res[p] = r2[p] ? r1[p].concat(r2[p]) : r1[p]
+    if (Array.isArray(r1[p]))
+      res[p] = [...new Set(r2[p] ? r1[p].concat(r2[p]) : r1[p])]
 
     //* Overwrite and Replace Everything Else
     else res[p] = r1[p] != null ? r1[p] : r2[p]
