@@ -115,10 +115,10 @@ const serverPort   = '7962'
 const slConfigPath = `${pathPrefix}/SCP Secret Laboratory/config/${serverPort}`
 const exiledPath   = `${pathPrefix}/EXILED/Configs`
 export const configPath = {
-  remoteAdmin : `${slConfigPath}/config_remoteadmin.txt`,
-  gameplay    : `${slConfigPath}/config_gameplay.txt`,
-  exiledConfig: `${exiledPath}/${serverPort}-config.yml`,
-  exiledPerms : `${exiledPath}/permissions.yml`
+  remoteAdmin   : `${slConfigPath}/config_remoteadmin.txt`,
+  gameplayConfig: `${slConfigPath}/config_gameplay.txt`,
+  exiledConfig  : `${exiledPath}/${serverPort}-config.yml`,
+  exiledPerms   : `${exiledPath}/permissions.yml`
 }
 
 
