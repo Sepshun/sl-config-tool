@@ -2,7 +2,7 @@
 //* ROLE INTERFACES --------------------------------------- *\\
 export interface Role {
   badge: string;
-  color?: string;
+  color?: 'rainbow'|'default'|'red'|'pink'|'brown'|'silver'|'light_green'|'crimson'|'cyan'|'aqua'|'deep_pink'|'tomato'|'yellow'|'magenta'|'blue_green'|'orange'|'lime'|'green'|'emerald'|'nickel'|'mint'|'army_green'|'pumpkin';
   cover?: boolean;
   hidden?: boolean;
   kick_power?: number;

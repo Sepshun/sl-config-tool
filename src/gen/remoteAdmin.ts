@@ -1,6 +1,6 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES AND TYPES ------------------------------ *\\
-import { log, inherit, validateColor } from '../utils'
+import { log, inherit } from '../utils'
 import { Role, roles } from '../data/roles'
 import remoteAdminConfig from '../data/remoteAdminConfig'
 
@@ -53,9 +53,7 @@ export function remoteAdmin (): RAConfig {
       ].includes(p)) {
         // If color, check color availability
         if (p == 'color')
-          roleBadges[`${r}_color`] = role.color == 'rainbow' ?
-            'default' :
-            validateColor(role.color)
+          roleBadges[`${r}_color`] = role.color.replace('rainbow', 'default')
 
         // Else, set role value declarations
         else roleBadges[`${r}_${p}`] = role[p]

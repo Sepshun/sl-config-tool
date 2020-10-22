@@ -47,15 +47,6 @@ export const log = {
 
 
 //* ------------------------------------------------------- *\\
-//* VALIDATE ROLE COLORS ---------------------------------- *\\
-const colors: string[] = [ 'pink', 'red', 'default', 'brown', 'silver', 'light_green', 'crimson', 'cyan', 'aqua', 'deep_pink', 'tomato', 'yellow', 'magenta', 'blue_green', 'orange', 'lime', 'green', 'emerald', 'nickel', 'mint', 'army_green', 'pumpkin' ]
-export function validateColor (col: string): string {
-  if (colors.includes(col)) return col
-  throw `${col} is not a valid color`
-}
-
-
-//* ------------------------------------------------------- *\\
 //* ROLE INHERITANCE -------------------------------------- *\\
 import { roles, Role } from './data/roles'
 export function inherit (role: Role): Role {
