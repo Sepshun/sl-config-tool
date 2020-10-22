@@ -123,3 +123,75 @@ export function convertToYAML (json: Record<string, unknown>): string {
 export function writeFile (path: string, data: string): void {
   fs.outputFileSync(path, data)
 }
+
+
+//* ------------------------------------------------------- *\\
+//* GAME VALUES & TYPES ----------------------------------- *\\
+// ItemTypes | All Valid Game Items | String Literal Type
+export type ItemTypes =
+  "None"|
+  "Coin"|
+  "KeycardJanitor"|
+  "KeycardScientist"|
+  "KeycardScientistMajor"|
+  "KeycardZoneManager"|
+  "KeycardGuard"|
+  "KeycardSeniorGuard"|
+  "KeycardContainmentEngineer"|
+  "KeycardNTFLieutenant"|
+  "KeycardNTFCommander"|
+  "KeycardChaosInsurgency"|
+  "KeycardO5"|
+  "GunCom15"|
+  "GunProject90"|
+  "GunE11SR"|
+  "GunMP7"|
+  "GunLogicer"|
+  "MicroHID"|
+  "GrenadeFrag"|
+  "GrenadeFlash"|
+  "Ammo556"|
+  "Ammo762"|
+  "Ammo9mm"|
+  "Medkit"|
+  "Adrenaline"|
+  "Painkillers"|
+  "Radio"|
+  "Flashlight"|
+  "Disarmer"|
+  "WeaponManagerTablet"|
+  "SCP500"|
+  "SCP207"|
+  "SCP018"|
+  "SCP268"
+// ClassTypes | All Valid Game Classes | String Literal Type
+export type ClassTypes =
+  "ClassD"|
+  "Scientist"|
+  "FacilityGuard"|
+  "NtfCadet"|
+  "NtfLieutenant"|
+  "NtfCommander"|
+  "NtfScientist"|
+  "ChaosInsurgency"|
+  "Scp173"|
+  "Scp049"|
+  "Scp0492"|
+  "Scp096"|
+  "Scp106"|
+  "Scp93953"|
+  "Scp93989"|
+  "Spectator"|
+  "Tutorial"
+
+//* ------------------------------------------------------- *\\
+//* CASE CONVERSIONS -------------------------------------- *\\
+export const _snakeToPascal = (string: string): string => {
+  return string.split("/")
+    .map(snake => snake.split("_")
+      .map(substr => substr.charAt(0)
+        .toUpperCase() +
+        substr.slice(1))
+      .join(""))
+    .join("/")
+}

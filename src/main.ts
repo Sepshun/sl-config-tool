@@ -4,6 +4,7 @@ import compile from './gen'
 import { log, configPath, convertToYAML, writeFile } from './utils'
 import gameplayConfig from './data/gameplayConfig'
 
+
 //* ------------------------------------------------------- *\\
 //* INITIALIZE VALUES ------------------------------------- *\\
 let time = 0
@@ -36,6 +37,12 @@ const tool = {
       convertToYAML(gameplayConfig)
     )
     log.compiling('GameplayConfig', 'red', `Wrote to ${configPath.gameplayConfig}`)
+
+    //* Write ExiledPlugins File -------------------------- *\\
+    writeFile(
+      configPath.exiledConfig,
+      convertToYAML(compile.exiledPlugins())
+    )
 
     //* Clear Build Timer & Log --------------------------- *\\
     clearInterval(timer)
