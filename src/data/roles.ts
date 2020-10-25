@@ -30,6 +30,9 @@ export const roles: RoleList = {
       'ServerConfigs',
       'PlayerSensitiveDataAccess'
     ],
+    exiledPerms: [
+      'ee.*'
+    ],
     users: ['76561198084288286@steam'] // Jess | Sepshun
   },
   coowner: {
@@ -49,10 +52,9 @@ export const roles: RoleList = {
     color: 'rainbow',
     kick_power: 1,
     required_kick_power: 2,
-    inherit: 'mod',
+    inherit: 'trialadmin',
     base_role: true,
     perms: [
-      'AdminChat',
       'ViewHiddenGlobalBadges',
       'Announcer',
       'Effects',
@@ -69,8 +71,30 @@ export const roles: RoleList = {
       'AFKImmunity'
     ],
     exiledPerms: [
-      'at.*',
-      'ee.*'
+      'at.items',
+      'at.cleanup',
+      'testplugin.admin',
+      'testplugin.*'
+    ]
+  },
+  trialadmin: {
+    badge: 'TRIAL ADMIN',
+    color: 'rainbow',
+    kick_power: 1,
+    required_kick_power: 2,
+    inherit: 'mod',
+    base_role: true,
+    perms: [
+      'LongTermBanning',
+      'AFKImmunity',
+      'AdminChat',
+      'ViewHiddenGlobalBadges'
+    ],
+    exiledPerms: [
+      'at.bc',
+      'at.tut',
+      'at.ghost',
+      'at.size'
     ]
   },
   mod: {
@@ -78,15 +102,27 @@ export const roles: RoleList = {
     color: 'yellow',
     kick_power: 0,
     required_kick_power: 1,
+    inherit: 'trialmod',
     base_role: true,
     perms: [
-      'KickingAndShortTermBanning',
       'BanningUpToDay',
       'ForceclassSelf',
-      'ForceclassToSpectator',
-      'Overwatch',
+      'Forceclass',
       'ViewHiddenBadges',
       'Broadcasting'
+    ],
+    exiledPerms: []
+  },
+  trialmod: {
+    badge: 'TRIAL MODERATOR',
+    color: 'yellow',
+    kick_power: 0,
+    required_kick_power: 1,
+    base_role: true,
+    perms: [
+      'AdminChat',
+      'KickingAndShortTermBanning',
+      'Overwatch'
     ],
     exiledPerms: [
       'at.jail',
@@ -126,19 +162,13 @@ export const roles: RoleList = {
     inherit: 'mod',
     users: ['76561198134444585@steam']
   }
-  // gothybitch: {
-  //   badge: 'GOTHY',
-  //   color: 'aqua',
-  //   inherit: 'mod',
-  //   users: ['76561199084896538@steam']
-  // }
 }
 
 //* ------------------------------------------------------- *\\
 //* ROLE INTERFACES --------------------------------------- *\\
 export interface Role {
   badge: string
-  color?: 'rainbow'|'default'|'red'|'pink'|'brown'|'silver'|'light_green'|'crimson'|'cyan'|'aqua'|'deep_pink'|'tomato'|'yellow'|'magenta'|'blue_green'|'orange'|'lime'|'green'|'emerald'|'nickel'|'mint'|'army_green'|'pumpkin'
+  color?: 'rainbow'|'red'|'pink'|'brown'|'silver'|'light_green'|'crimson'|'cyan'|'aqua'|'deep_pink'|'tomato'|'yellow'|'magenta'|'blue_green'|'orange'|'lime'|'green'|'emerald'|'nickel'|'mint'|'army_green'|'pumpkin'
   cover?: boolean
   hidden?: boolean
   kick_power?: number
