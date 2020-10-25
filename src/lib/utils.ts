@@ -187,7 +187,8 @@ export const _snakeToPascal = (string: string): string => {
 //* NAME COLOR UTILS -------------------------------------- *\\
 const RGBToHex = (rgb: string): string => {
   // Choose Correct Separator
-  let sep = rgb.indexOf(",") > -1 ? "," : " ";
+  const sep = rgb.indexOf(",") > -1 ? "," : " ";
+  
   // Convert String into Array
   const res = rgb.substr(4).split(")")[0].split(sep);
 
