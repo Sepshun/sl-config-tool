@@ -185,8 +185,35 @@ export const _snakeToPascal = (string: string): string => {
 
 //* ------------------------------------------------------- *\\
 //* NAME COLOR UTILS -------------------------------------- *\\
-export const gradientName = (name: string): string => {
-  return name
+const RGBToHex = (rgb: string): string => {
+  // Choose Correct Separator
+  let sep = rgb.indexOf(",") > -1 ? "," : " ";
+  // Convert String into Array
+  const res = rgb.substr(4).split(")")[0].split(sep);
+
+  let r = (+res[0]).toString(16),
+      g = (+res[1]).toString(16),
+      b = (+res[2]).toString(16)
+
+  if (r.length == 1) r = "0" + r
+  if (g.length == 1) g = "0" + g
+  if (b.length == 1) b = "0" + b
+
+  return `#${r}${g}${b}`
+}
+import grad from 'gradient-color'
+export const gradientName = (name: string, gradient: string[]|object[] = ['#0084FF', '#F76EE8']): string => {
+  const nameArr = name.split('')
+  const gradArr = grad(gradient, nameArr.length)
+  let res = ''
+  
+  nameArr.forEach((char: string, i: number) => {
+    char == ' ' ?
+      res += ' ' :
+      res += `<color=${RGBToHex(gradArr[i])}>${char}</color>`
+  })
+
+  return res
 }
 // Rainbow Name
 export const rainbowName = (name: string, rainbow: string[] = [
