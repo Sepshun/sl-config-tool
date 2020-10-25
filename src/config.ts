@@ -37,7 +37,7 @@ export default {
 
   //  Appends the inheritted base role's badge onto non-base roles within parentheses
   //  EX: "DUCK (ADMIN)" or "KIWI (MODERATOR)"
-  append_base_role_badge: false,
+  append_base_role_badge: true,
 
 
   //* FTP UPLOAD CONFIGURATION ---------------------------- *\\

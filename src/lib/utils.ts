@@ -49,6 +49,7 @@ export const log = {
 //* ------------------------------------------------------- *\\
 //* ROLE INHERITANCE -------------------------------------- *\\
 import { roles, Role } from '../data/roles'
+import config from '../config'
 export function inherit (role: Role): Role {
   let res: Role = cloneDeep(roles.default)
 
@@ -61,6 +62,11 @@ export function inherit (role: Role): Role {
     // If the role we inherit from also inherits from something
     // we need to grab what that role would be after it's inheritted
     if (inheritRole.hasOwnProperty('inherit')) inheritRole = inherit(inheritRole)
+
+    //* Calculate BaseRole Badge Inheritance
+    if (config.append_base_role_badge && !role.base_role) {
+      role.badge += ` (${inheritRole.badge})`
+    }
 
     //* Apply inheritted to default
     // Apply the prop values from the current role to the inheritted role

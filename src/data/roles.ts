@@ -20,6 +20,7 @@ export const roles: RoleList = {
     kick_power: 255,
     required_kick_power: 255,
     inherit: 'admin',
+    base_role: true,
     perms: [
       'FriendlyFireDetectorImmunity',
       'FriendlyFireDetectorTempDisable',
@@ -37,6 +38,7 @@ export const roles: RoleList = {
     kick_power: 255,
     required_kick_power: 255,
     inherit: 'admin',
+    base_role: true,
     users: ['76561198120759344@steam'] // Kyle Arrow
   },
 
@@ -48,6 +50,7 @@ export const roles: RoleList = {
     kick_power: 1,
     required_kick_power: 2,
     inherit: 'mod',
+    base_role: true,
     perms: [
       'AdminChat',
       'ViewHiddenGlobalBadges',
@@ -75,6 +78,7 @@ export const roles: RoleList = {
     color: 'yellow',
     kick_power: 0,
     required_kick_power: 1,
+    base_role: true,
     perms: [
       'KickingAndShortTermBanning',
       'BanningUpToDay',
@@ -140,6 +144,7 @@ export interface Role {
   kick_power?: number
   required_kick_power?: number
   inherit?: string
+  base_role?: boolean
   perms?: string[]
   exiledPerms?: string[]
   users?: string[]
