@@ -51,11 +51,12 @@ export function remoteAdmin (): RAConfig {
         'inherit',
         'perms',
         'exiledPerms',
-        'users'
+        'users',
+        'base_role'
       ].includes(p)) {
         // If color, check color availability
         if (p == 'color')
-          roleBadges[`${r}_color`] = role.color.replace('rainbow', 'default')
+          roleBadges[`${r}_color`] = role.color.replace('rainbow', 'red')
 
         // Else, set role value declarations
         else roleBadges[`${r}_${p}`] = role[p]
