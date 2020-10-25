@@ -187,10 +187,10 @@ export const _snakeToPascal = (string: string): string => {
 //* NAME COLOR UTILS -------------------------------------- *\\
 const RGBToHex = (rgb: string): string => {
   // Choose Correct Separator
-  const sep = rgb.indexOf(",") > -1 ? "," : " ";
-  
+  const sep = rgb.indexOf(",") > -1 ? "," : " "
+
   // Convert String into Array
-  const res = rgb.substr(4).split(")")[0].split(sep);
+  const res = rgb.substr(4).split(")")[0].split(sep)
 
   let r = (+res[0]).toString(16),
       g = (+res[1]).toString(16),
@@ -203,7 +203,7 @@ const RGBToHex = (rgb: string): string => {
   return `#${r}${g}${b}`
 }
 import grad from 'gradient-color'
-export const gradientName = (name: string, gradient: string[]|object[] = ['#0084FF', '#F76EE8']): string => {
+export const gradientName = (name: string, gradient: string[]|Record<string, unknown>[] = ['#0084FF', '#F76EE8']): string => {
   const nameArr = name.split('')
   const gradArr = grad(gradient, nameArr.length)
   let res = ''
