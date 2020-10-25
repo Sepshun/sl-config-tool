@@ -1,17 +1,19 @@
+import config from '../config'
+import { trimMultilineString } from '../lib/utils'
 export default {
   //* ----------------------------------------------------- *\\
   //* SERVER MAIN SETTINGS -------------------------------- *\\
-  "server_name": "<i><color=#FFA500>[US ENG]</color> <color=#FF0000>[FF ON]</color></i> <color=#E100FF>E</color><color=#8A00FF>p</color><color=#00A5FF>i</color><color=#00FF00>t</color><color=#FFFF00>o</color><color=#FFA500>m</color><color=#FF0000>e SCP</color> <color=#FFFFFF>Server</color>",
+  "server_name": trimMultilineString(config.server_name),
   "player_list_title": "default", // default = server_name
   "player_list_title_rate": "default",
-  "serverinfo_pastebin_id": "h0ysYX5D",
-  "server_ip": "192.154.253.153",
-  "max_players": 30,
+  "serverinfo_pastebin_id": config.server_info,
+  "server_ip": config.server_ip,
+  "max_players": config.max_players,
   "use_reserved_slots": true,
   "lobby_waiting_time": "default",
-  "ipv4_bind_ip": "192.154.253.153",
+  "ipv4_bind_ip": config.server_ip,
   "ipv6_bind_ip": "::",
-  "contact_email": "sepshuncontact@gmail.com",
+  "contact_email": config.contact_email,
 
   //* ----------------------------------------------------- *\\
   //* SPAWN SETTINGS -------------------------------------- *\\
@@ -37,7 +39,7 @@ export default {
   "intercom_cooldown": 120,
   "intercom_max_speech_time": 40,
   "auto_round_restart_time": 10,
-  "friendly_fire": true,
+  "friendly_fire": config.friendly_fire,
   "warhead_tminus_start_duration": 90,
   "human_grenade_multiplier": 0.7,
   "scp_grenade_multiplier": 1,
@@ -50,7 +52,7 @@ export default {
   "096_destroy_locked_doors": true,
   "no_holidays": false,
   "allow_disarmed_interaction": false,
-  "914_mode": "DroppedAndHeld",
+  "914_mode": config.scp914_mode,
   "sinkhole_slow_amount": 30,
   "sinkhole_spawn_chance": 50,
 
@@ -201,7 +203,7 @@ export default {
   "stamina_balance_walk_speed": "default",
   "stamina_balance_sprint_speed": "default",
   "constantly_check_afk": "default",
-  "friendly_fire_multiplier": 0.5,
+  "friendly_fire_multiplier": config.friendly_fire_mult,
   "disconnect_drop": "default",
   "ragdoll_cleanup_time": "default",
   "end_round_on_one_player": "default",

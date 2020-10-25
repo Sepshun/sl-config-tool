@@ -188,7 +188,7 @@ const config = {
 
 //* ------------------------------------------------------- *\\
 //* DYNAMIC CONFIG METHODS -------------------------------- *\\
-import { ClassTypes, ItemTypes, _snakeToPascal } from '../../utils'
+import { ClassTypes, ItemTypes, _snakeToPascal } from '../../lib/utils'
 const scp914Setting = (s: string) => { return s.replace('one_to_one', 'oneto_one') }
 const compileConfig = () => {
   //* ----------------------------------------------------- *\\

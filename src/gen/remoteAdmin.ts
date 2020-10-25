@@ -1,18 +1,20 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES AND TYPES ------------------------------ *\\
-import { log, inherit } from '../utils'
+import { log, inherit } from '../lib/utils'
 import { Role, roles } from '../data/roles'
 import remoteAdminConfig from '../data/remoteAdminConfig'
 
 //* ------------------------------------------------------- *\\
 //* INTERFACES -------------------------------------------- *\\
 interface RAConfig {
-  Members: string[];
-  Roles: string[];
+  Members: {
+    [steamID: string]: string
+  }
+  Roles: string[]
   Permissions: {
     [permission: string]: string[]
-  }[];
-  [extraProp: string]: any;
+  }
+  [extraProp: string]: any
 }
 
 //* ------------------------------------------------------- *\\
@@ -22,10 +24,10 @@ export function remoteAdmin (): RAConfig {
   log.compiling('RemoteAdmin', 'green', 'Initializing compilation...')
 
   //* Define Init Values
-  const Members = []
+  const Members = {}
   const roleBadges = {}
   const Roles = []
-  const Permissions = []
+  // const Permissions = {}
 
   //* Loop through all defined RoleList
   for (const r in roles) {
@@ -38,7 +40,7 @@ export function remoteAdmin (): RAConfig {
     //* If role has users, add to Members array
     if (role.hasOwnProperty('users')) {
       //* Loop through all Users & push Role info to MemberList
-      role.users.forEach(uid => { Members.push({ [uid]: r }) })
+      role.users.forEach(uid => { Members[uid] = r })
     }
 
     //* Add RoleBadge Declarations
@@ -75,9 +77,9 @@ export function remoteAdmin (): RAConfig {
   }
 
   //* Structure and Compile Permissions properly
-  for (const p in permObj) {
-    Permissions.push({ [p]: permObj[p] })
-  }
+  // for (const p in permObj) {
+  //   Permissions.push({ [p]: permObj[p] })
+  // }
 
   log.compiling('RemoteAdmin', 'green', `Finished compilation`)
 
@@ -86,7 +88,7 @@ export function remoteAdmin (): RAConfig {
     Members,
     ...roleBadges,
     Roles,
-    Permissions,
+    Permissions: permObj,
     ...remoteAdminConfig
   } as RAConfig
 }

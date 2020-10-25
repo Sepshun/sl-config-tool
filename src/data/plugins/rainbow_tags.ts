@@ -1,7 +1,7 @@
 //* ------------------------------------------------------- *\\
 //* DYNAMIC CONFIG METHODS -------------------------------- *\\
 import { Role, roles } from '../../data/roles'
-import { inherit } from '../../utils'
+import { inherit } from '../../lib/utils'
 const calculateActiveGroups = () => {
   //* Calculate Roles with Rainbow Colors
   const active_groups = []

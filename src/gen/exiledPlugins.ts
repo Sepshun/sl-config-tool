@@ -1,6 +1,6 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES AND TYPES ------------------------------ *\\
-import { log } from '../utils'
+import { log } from '../lib/utils'
 const fs = require('fs-extra')
 const path = require('path')
 
@@ -8,8 +8,8 @@ const path = require('path')
 //* COMPILER FUNCTION ------------------------------------- *\\
 interface EXILEDPlugins {
   [pluginName: string]: {
-    is_enabled: boolean;
-    [configValue: string]: any;
+    is_enabled: boolean
+    [configValue: string]: any
   }
 }
 export function exiledPlugins (): EXILEDPlugins {

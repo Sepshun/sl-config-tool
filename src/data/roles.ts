@@ -1,22 +1,4 @@
 //* ------------------------------------------------------- *\\
-//* ROLE INTERFACES --------------------------------------- *\\
-export interface Role {
-  badge: string;
-  color?: 'rainbow'|'default'|'red'|'pink'|'brown'|'silver'|'light_green'|'crimson'|'cyan'|'aqua'|'deep_pink'|'tomato'|'yellow'|'magenta'|'blue_green'|'orange'|'lime'|'green'|'emerald'|'nickel'|'mint'|'army_green'|'pumpkin';
-  cover?: boolean;
-  hidden?: boolean;
-  kick_power?: number;
-  required_kick_power?: number;
-  inherit?: string;
-  perms?: string[];
-  exiledPerms?: string[];
-  users?: string[];
-}
-export interface RoleList {
-  [name: string]: Role
-}
-
-//* ------------------------------------------------------- *\\
 //* ROLE LIST --------------------------------------------- *\\
 export const roles: RoleList = {
   //* ----------------------------------------------------- *\\
@@ -36,6 +18,7 @@ export const roles: RoleList = {
     badge: 'OWNER (SHE/HER)',
     color: 'rainbow',
     kick_power: 255,
+    required_kick_power: 255,
     inherit: 'admin',
     perms: [
       'FriendlyFireDetectorImmunity',
@@ -54,7 +37,6 @@ export const roles: RoleList = {
     kick_power: 255,
     required_kick_power: 255,
     inherit: 'admin',
-    perms: [],
     users: ['76561198120759344@steam'] // Kyle Arrow
   },
 
@@ -139,11 +121,29 @@ export const roles: RoleList = {
     color: 'magenta',
     inherit: 'mod',
     users: ['76561198134444585@steam']
-  },
-  gothybitch: {
-    badge: 'GOTHY',
-    color: 'aqua',
-    inherit: 'mod',
-    users: ['76561199084896538@steam']
   }
+  // gothybitch: {
+  //   badge: 'GOTHY',
+  //   color: 'aqua',
+  //   inherit: 'mod',
+  //   users: ['76561199084896538@steam']
+  // }
+}
+
+//* ------------------------------------------------------- *\\
+//* ROLE INTERFACES --------------------------------------- *\\
+export interface Role {
+  badge: string
+  color?: 'rainbow'|'default'|'red'|'pink'|'brown'|'silver'|'light_green'|'crimson'|'cyan'|'aqua'|'deep_pink'|'tomato'|'yellow'|'magenta'|'blue_green'|'orange'|'lime'|'green'|'emerald'|'nickel'|'mint'|'army_green'|'pumpkin'
+  cover?: boolean
+  hidden?: boolean
+  kick_power?: number
+  required_kick_power?: number
+  inherit?: string
+  perms?: string[]
+  exiledPerms?: string[]
+  users?: string[]
+}
+export interface RoleList {
+  [name: string]: Role
 }

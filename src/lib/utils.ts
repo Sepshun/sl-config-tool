@@ -48,7 +48,7 @@ export const log = {
 
 //* ------------------------------------------------------- *\\
 //* ROLE INHERITANCE -------------------------------------- *\\
-import { roles, Role } from './data/roles'
+import { roles, Role } from '../data/roles'
 export function inherit (role: Role): Role {
   let res: Role = cloneDeep(roles.default)
 
@@ -89,36 +89,17 @@ const applyProps = (r1: Role, r2: Role): Role => {
   return res
 }
 
-//* ------------------------------------------------------- *\\
-//* FILE PATHS -------------------------------------------- *\\
-// AppData/Roaming
-// ├─SCP Secret Laboratory
-// │ └─config
-// │   └─7962
-// │     ├─config_remoteadmin.txt
-// │     └─config_gameplay.txt
-// └─EXILED
-//   └─Configs
-//     ├─7962-config.yml
-//     └─permissions.yml
-const pathPrefix   = 'dist/AppData/Roaming'
-const serverPort   = '7962'
-const slConfigPath = `${pathPrefix}/SCP Secret Laboratory/config/${serverPort}`
-const exiledPath   = `${pathPrefix}/EXILED/Configs`
-export const configPath = {
-  remoteAdmin   : `${slConfigPath}/config_remoteadmin.txt`,
-  gameplayConfig: `${slConfigPath}/config_gameplay.txt`,
-  exiledConfig  : `${exiledPath}/${serverPort}-config.yml`,
-  exiledPerms   : `${exiledPath}/permissions.yml`
-}
-
 
 //* ------------------------------------------------------- *\\
 //* CONVERT JSON>YAML & WRITE FILES ----------------------- *\\
 const fs = require('fs-extra')
-const yaml = require('js-yaml')
+import yaml = require('js-yaml')
+import configParser from './configConverter'
+export function convertToSLConfig (json: Record<string, unknown>): string {
+  return configParser(json)
+}
 export function convertToYAML (json: Record<string, unknown>): string {
-  return yaml.safeDump(json)
+  return yaml.safeDump(json, { lineWidth: -1 })
 }
 export function writeFile (path: string, data: string): void {
   fs.outputFileSync(path, data)
@@ -194,4 +175,42 @@ export const _snakeToPascal = (string: string): string => {
         substr.slice(1))
       .join(""))
     .join("/")
+}
+
+//* ------------------------------------------------------- *\\
+//* NAME COLOR UTILS -------------------------------------- *\\
+export const gradientName = (name: string): string => {
+  return name
+}
+// Rainbow Name
+export const rainbowName = (name: string, rainbow: string[] = [
+  '#E100FF',
+  '#8A00FF',
+  '#00A5FF',
+  '#00FF00',
+  '#FFFF00',
+  '#FFA500'
+]): string => {
+  const nameArr = name.split('')
+  let res = ''
+
+  nameArr.forEach((char: string, i: number) => {
+    const id = i - (rainbow.length * (Math.ceil((i / rainbow.length) + 0.1) - 1))
+    char == ' ' ?
+      res += ' ' :
+      res += `<color=${rainbow[id]}>${char}</color>`
+  })
+
+  return res
+}
+
+//* ------------------------------------------------------- *\\
+//* TRIM SERVER NAME -------------------------------------- *\\
+import dedent from 'ts-dedent'
+export const trimMultilineString = (str: string): string => {
+  return dedent(str)
+    .split(/\r?\n/)
+    .map(row => row.trim())
+    .join('\n')
+    .replace(/(\r\n|\n|\r)/gm, '')
 }

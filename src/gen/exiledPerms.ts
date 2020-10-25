@@ -1,14 +1,14 @@
 //* ------------------------------------------------------- *\\
 //* IMPORT MODULES AND TYPES ------------------------------ *\\
-import { log, inherit } from '../utils'
+import { log, inherit } from '../lib/utils'
 import { Role, roles } from '../data/roles'
 
 //* ------------------------------------------------------- *\\
 //* INTERFACES -------------------------------------------- *\\
 interface EXILEDPerms {
   [role: string]: {
-    inheritance?: string[];
-    permissions?: string[];
+    inheritance?: string[]
+    permissions?: string[]
   }
 }
 
